@@ -5,30 +5,37 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        
+        const a = document.createElement( 'a' );
+        a.href = "#";
+
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
+        img.alt = name;
 
         const h2 = document.createElement( 'h2' );
         h2.className = 'photograph-name';
         h2.textContent = name;
 
-        const h3 = document.createElement( 'h3' );
-        h3.className = 'photograph-location';
-        h3.textContent = city + ", " + country;
+        a.appendChild(img);
+        a.appendChild(h2);
 
-        const h4 = document.createElement( 'h4' );
-        h4.className = 'photograph-tagline';
-        h4.textContent = tagline;
+        const spanLocation = document.createElement( 'span' );
+        spanLocation.className = 'photograph-location';
+        spanLocation.textContent = city + ", " + country;
 
-        const h5 = document.createElement( 'h5' );
-        h5.className = 'photograph-price';
-        h5.textContent = price + "€/jour";
+        const spanTagline = document.createElement( 'span' );
+        spanTagline.className = 'photograph-tagline';
+        spanTagline.textContent = tagline;
 
-        article.appendChild(img);
-        article.appendChild(h2);
-        article.appendChild(h3);
-        article.appendChild(h4);
-        article.appendChild(h5);
+        const spanPrice = document.createElement( 'span' );
+        spanPrice.className = 'photograph-price';
+        spanPrice.textContent = price + "€/jour";
+
+        article.appendChild(a);
+        article.appendChild(spanLocation);
+        article.appendChild(spanTagline);
+        article.appendChild(spanPrice);
         return (article);
     }
     return { name, picture, getUserCardDOM }

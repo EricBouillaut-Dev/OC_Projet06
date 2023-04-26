@@ -19,7 +19,7 @@ h1 {
     margin-right: 100px;
 }
 
-h2, h3, h4, h5{
+h2{
     margin: 0;
     font-weight: normal;
 }
@@ -44,15 +44,21 @@ h2, h3, h4, h5{
     flex-direction: column;
 }
 
+.photographer_section article a{
+    text-decoration: none;
+}
+
 .photograph-name{
     color: #D3573C;
     font-size: 2rem;
     margin-top: 1rem;
+    text-align: center;
 }
 
 .photograph-location{
     color: #901c1c;
     font-size: 0.75rem;
+    font-weight: bold;
 }
 .photograph-tagline{
     color: black;
@@ -71,4 +77,9 @@ h2, h3, h4, h5{
     width: 170px;
     border-radius: 50%;
     object-fit: cover;
+    margin: auto;
 }
+/* .photographer_section article h2 {
+    text-align: center;
+    text-decoration: none;
+} */
