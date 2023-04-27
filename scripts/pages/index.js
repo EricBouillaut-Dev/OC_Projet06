@@ -1,4 +1,19 @@
 async function getPhotographers() {
+  const keyPrefix = 'OC_P6_photographer-';
+  const photographers = [];
+  const keys = Object.keys(localStorage).filter(key => key.startsWith(keyPrefix));
+  if (keys.length > 0) {
+    localKeyExist=true;
+    keys.forEach(value => {
+      const photographer = JSON.parse(localStorage.getItem(value));
+      photographers.push(photographer);
+    });
+    console.log("Build a partir du local storage");
+
+    return photographers;
+  }
+  else{
+    console.log("Build fetch");
     try {
       const response = await fetch('./data/photographers.json');
       if (!response.ok) {
@@ -19,33 +34,15 @@ async function getPhotographers() {
       throw error;
     }
   }
+}
   
-
-
-// async function getPhotographers() {
-//     try {
-//       const response = await fetch('./data/photographers.json');
-//       if (!response.ok) {
-//         throw new Error(`Impossible d'effectuer le fetch: ${response.status} ${response.statusText}`);
-//       }
-//       const data = await response.json();
-//       if (!data || !data.photographers || data.photographers.length === 0) {
-//         throw new Error('Aucun photographe trouvé');
-//       }
-//       return data.photographers;
-//     } catch (error) {
-//       console.error(error);
-//       throw error;
-//     }
-//   }
-
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
-        console.log(userCardDOM);
+        // console.log(userCardDOM);
         photographersSection.appendChild(userCardDOM);
             // console.log(userCardDOM);
     });
@@ -55,7 +52,16 @@ async function init() {
     // Récupère les datas des photographes
     const photographers = await getPhotographers();
     console.log(photographers);
+    // Stockage des photographes dans le localStorage
+    if(!localKeyExist){
+      photographers.forEach(photographer => {
+        localStorage.setItem(`OC_P6_photographer-${photographer.id}`, JSON.stringify(photographer));
+      });
+      console.log("ajout local storage");
+    }
+
     displayData(photographers);
 };
+let localKeyExist=false;
 init();
     

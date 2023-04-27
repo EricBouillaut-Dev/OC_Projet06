@@ -3,9 +3,26 @@
 }
 
 .photograph-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    padding: 0 2rem;
+}
+
+.photograph-header__bloc-titre{
+    display: flex;
+    justify-content:left;
+    flex-direction: column;
+}
+.photograph-header img {
+    display: block;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin: 0;
 }
 
 .contact_button {

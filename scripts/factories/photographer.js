@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const { name, portrait, city, country, tagline, price} = data;
+    const { name, portrait, city, country, tagline, price, id} = data;
 
     const picture = `assets/photographers/small/${portrait}`;
 
@@ -7,11 +7,11 @@ function photographerFactory(data) {
         const article = document.createElement( 'article' );
         
         const a = document.createElement( 'a' );
-        a.href = "#";
+        a.href = `photographer.html?id=${id}`;
 
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.alt = name;
+        // img.alt = name;
 
         const h2 = document.createElement( 'h2' );
         h2.className = 'photograph-name';
@@ -20,22 +20,24 @@ function photographerFactory(data) {
         a.appendChild(img);
         a.appendChild(h2);
 
-        const spanLocation = document.createElement( 'span' );
-        spanLocation.className = 'photograph-location';
-        spanLocation.textContent = city + ", " + country;
+        const pLocation = document.createElement( 'p' );
+        pLocation.className = 'photograph-location';
+        pLocation.textContent = city + ", " + country;
 
-        const spanTagline = document.createElement( 'span' );
-        spanTagline.className = 'photograph-tagline';
-        spanTagline.textContent = tagline;
+        const pTagline = document.createElement( 'p' );
+        pTagline.className = 'photograph-tagline';
+        pTagline.textContent = tagline;
 
-        const spanPrice = document.createElement( 'span' );
-        spanPrice.className = 'photograph-price';
-        spanPrice.textContent = price + "€/jour";
+        const pPrice = document.createElement( 'p' );
+        pPrice.className = 'photograph-price';
+        pPrice.textContent = price + "€/jour";
 
         article.appendChild(a);
-        article.appendChild(spanLocation);
-        article.appendChild(spanTagline);
-        article.appendChild(spanPrice);
+        // article.appendChild(img);
+        // article.appendChild(h2);
+        article.appendChild(pLocation);
+        article.appendChild(pTagline);
+        article.appendChild(pPrice);
         return (article);
     }
     return { name, picture, getUserCardDOM }

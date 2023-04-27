@@ -1,11 +1,13 @@
 @import url("photographer.css");
-
-body {
+html {
+    box-sizing: border-box;
+    margin: 0 auto;
     font-family: "DM Sans", sans-serif;
-    margin: 0;
-}
-
-
+    min-width: 350px;
+    max-width: 1440px;
+    max-height: 1024px;
+  }
+  
 header {
     display: flex;
     flex-direction: row;
@@ -19,7 +21,7 @@ h1 {
     margin-right: 100px;
 }
 
-h2{
+h2, p{
     margin: 0;
     font-weight: normal;
 }
@@ -33,7 +35,8 @@ h2{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
-    margin-top: 100px;
+    margin-top: 6rem;
+    margin-bottom: 3rem;
 }
 
 .photographer_section article {
@@ -50,36 +53,30 @@ h2{
 
 .photograph-name{
     color: #D3573C;
-    font-size: 2rem;
+    font-size: 2.3rem;
     margin-top: 1rem;
     text-align: center;
 }
 
 .photograph-location{
     color: #901c1c;
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: bold;
 }
 .photograph-tagline{
     color: black;
-    font-size: 0.6rem;
+    font-size: 0.63rem;
 }
 .photograph-price{
     color: #757575;
     font-size: 0.6rem;
 }
 
-
-
 .photographer_section article img {
     display: block;
-    height: 170px;
-    width: 170px;
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
-    object-fit: cover;
     margin: auto;
 }
-/* .photographer_section article h2 {
-    text-align: center;
-    text-decoration: none;
-} */
+
