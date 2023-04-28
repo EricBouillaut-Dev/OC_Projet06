@@ -1,21 +1,25 @@
 async function getPhotographers() {
+  const loader = document.querySelector('.loader');
   const keyPrefix = 'OC_P6_photographer-';
   const photographers = [];
   const keys = Object.keys(localStorage).filter(key => key.startsWith(keyPrefix));
   if (keys.length > 0) {
+    loader.style.display = 'flex';
     localKeyExist=true;
     keys.forEach(value => {
       const photographer = JSON.parse(localStorage.getItem(value));
       photographers.push(photographer);
     });
     console.log("Build a partir du local storage");
-
+    loader.style.display = 'none';
     return photographers;
   }
   else{
     console.log("Build fetch");
     try {
+      loader.style.display = 'flex';
       const response = await fetch('./data/photographers.json');
+      await new Promise(resolve => setTimeout(resolve, 2000));
       if (!response.ok) {
         throw new Error(`Impossible d'effectuer le fetch: ${response.status} ${response.statusText}`);
       }
@@ -33,6 +37,9 @@ async function getPhotographers() {
       console.error(error);
       throw error;
     }
+    finally {
+      loader.style.display = 'none';
+    }
   }
 }
   
@@ -41,6 +48,7 @@ async function displayData(photographers) {
 
     photographers.forEach((photographer) => {
         const photographerModel = photographerFactory(photographer);
+        // console.log(photographerModel);
         const userCardDOM = photographerModel.getUserCardDOM();
         // console.log(userCardDOM);
         photographersSection.appendChild(userCardDOM);
