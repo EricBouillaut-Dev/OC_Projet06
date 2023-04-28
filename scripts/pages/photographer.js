@@ -1,5 +1,5 @@
 const loader = document.querySelector('.loader');
-loader.style.display = 'block';
+loader.style.display = 'flex';
 let params = (new URL(document.location)).searchParams;
 let photographerId = params.get('id');
 
@@ -28,6 +28,24 @@ photograpHeader.appendChild(img);
 
 loader.style.display = 'none';
 
+const mediaImages = Object.values(photographer.media).filter(obj => obj.image);
+
+  const Images = mediaImages.map(img => img.image);
+  
+  console.log(Images);
+  
+
+// const images=photographer.media
 console.log(photographer.name);
 console.log(photographer.tagline);
-console.log(photographer.city);
+
+// function exportToJsonFile(jsonData, fileName) {
+//     let dataStr = JSON.stringify(jsonData, null, 2);
+//     let dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+//     let linkElement = document.createElement('a');
+//     linkElement.setAttribute('href', dataUri);
+//     linkElement.setAttribute('download', fileName);
+//     linkElement.click();
+//   }
+
+//   exportToJsonFile(photographer, "test.json")
