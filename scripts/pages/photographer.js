@@ -34,7 +34,7 @@ const mediaImages = Object.values(photographer.media).filter(obj => obj.image);
   
   console.log(Images);
   
-
+// launchLighbox();
 // const images=photographer.media
 console.log(photographer.name);
 console.log(photographer.tagline);

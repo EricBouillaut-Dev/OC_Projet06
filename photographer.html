@@ -6,6 +6,7 @@
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/8c5af481df.js" crossorigin="anonymous"></script>
   <title>Fisheye - photographe </title>
 </head>
 
@@ -37,7 +38,14 @@
     </div>
     <div id="photographer-images"></div>
 
-
+    <div class="lightbox">
+      <div class="border-lightbox">
+        <span class="close">&times;</span>
+        <a class="prev">&#10094;</a>
+        <img class="lightbox-img" src="">
+        <a class="next">&#10095;</a>
+      </div>
+    </div>
 
 
 
@@ -60,6 +68,7 @@
   <script src="scripts/pages/photographer.js"></script>
   <script src="scripts/utils/contactForm.js"></script>
   <script src="scripts/utils/filter.js"></script>
+  <script src="scripts/utils/lightbox.js"></script>
 </body>
 
 </html>

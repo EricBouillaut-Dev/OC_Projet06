@@ -3,14 +3,20 @@ const sortImagesSelect = document.getElementById('sort-images-select');
 const sortImagesButton = document.getElementById('sort-images-button');
 const sortDropdown = sortImagesSelect.parentElement
 
-sortImagesButton.addEventListener('mouseenter', event => {
+sortImagesButton.addEventListener('click', event => {
   sortImagesButton.setAttribute('aria-expanded', 'true');
-  sortImagesSelect.style.display = 'block';
+  sortImagesButton.classList.toggle('active');
+  sortImagesSelect.classList.toggle('active');
+  
+  // sortImagesSelect.style.display = 'block';
 });
 
 sortDropdown.addEventListener('mouseleave', event => {
   sortImagesButton.setAttribute('aria-expanded', 'false');
-  sortImagesSelect.style.display = 'none';
+  sortImagesButton.removeAttribute ('class');
+  sortImagesSelect.removeAttribute ('class');
+
+  // sortImagesSelect.style.display = 'none';
 });
 
 function sortImagesBy(property) {
