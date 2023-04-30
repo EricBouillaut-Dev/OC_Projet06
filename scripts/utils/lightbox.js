@@ -6,9 +6,9 @@ const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 const closeButton = document.querySelector('.close');
 
-lightbox.style.backgroundColor = 'rgba(255, 255, 255, 1)';
 lightbox.style.top = `${y}px`;
 lightbox.style.left = `${x}px`;
+lightbox.style.backgroundColor = 'rgba(255, 255, 255, 1)';
 lightbox.style.transform = `translate(-${x}px, -${y}px) scale(1)`;
 lightbox.style.transition = 'transform 0.3s ease-in, background-color 0.3s cubic-bezier( 1, 0, 1, 0 )';
 prevButton.innerHTML = '&#10094;';
@@ -33,8 +33,13 @@ prevButton.addEventListener('click', () => {
   }
   const newImageSrc = images[currentIndex].getAttribute('src');
   const newImageCaption = images[currentIndex].getAttribute('alt');
-  lightboxImg.setAttribute('src', newImageSrc);
-  lightboxCaption.innerText = newImageCaption;
+
+  lightboxImg.style.opacity = '0';
+  setTimeout(() => {
+    lightboxImg.setAttribute('src', newImageSrc);
+    lightboxCaption.innerText = newImageCaption;
+    lightboxImg.style.opacity = '1';
+  }, 100);
 });
 
 nextButton.addEventListener('click', () => {
@@ -44,8 +49,13 @@ nextButton.addEventListener('click', () => {
   }
   const newImageSrc = images[currentIndex].getAttribute('src');
   const newImageCaption = images[currentIndex].getAttribute('alt');
-  lightboxImg.setAttribute('src', newImageSrc);
-  lightboxCaption.innerText = newImageCaption;
+
+  lightboxImg.style.opacity = '0';
+  setTimeout(() => {
+    lightboxImg.setAttribute('src', newImageSrc);
+    lightboxCaption.innerText = newImageCaption;
+    lightboxImg.style.opacity = '1';
+  }, 100);
 });
 
 document.addEventListener('keydown', (event) => {

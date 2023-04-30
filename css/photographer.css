@@ -1,5 +1,13 @@
 @import url("loader.css");
-
+html {
+    box-sizing: border-box;
+    margin: 0 auto;
+    font-family: "DM Sans", sans-serif;
+    min-width: 350px;
+    max-width: 1440px;
+    max-height: 1024px;
+  }
+  
 #contact_modal {
     display: none;
 }
@@ -10,8 +18,8 @@
     justify-content: space-between;
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
-    padding: 0 2rem;
+    margin: 0 5rem;
+    padding: 0 3rem;
 }
 
 .photograph-header__bloc-titre{
@@ -92,4 +100,203 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+.logo {
+    height: 50px;
+    margin: 2rem 5rem;
+
+}
+
+.photograph-name{
+    color: #D3573C;
+    font-size: 4rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    text-align: center;
+    font-weight: normal;
+}
+
+.photograph-location{
+    color: #901c1c;
+    font-size: 1.5rem;
+    margin: 0;
+    /* font-weight: bold; */
+}
+.photograph-tagline{
+    color: black;
+    font-size: 1.1rem;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin: 1rem 0 1rem 0;
+  }
+  
+  .dropdown ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    width: 130px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: white;
+    background-color: #901c1c;
+    border-radius: 5px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  }
+  .dropdown ul.active {
+    max-height: 200px;
+    transition: max-height 0.3s ease-in;
+  }
+  .dropdown[aria-expanded="true"] ul {
+    display: block;
+  }
+  
+  .dropdown ul li {
+    position: relative;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-top: 1px solid white;
+  }
+    
+  .dropdown ul li:hover {
+    background-color: #D3573C;
+    border-radius: 2px;
+  }
+  
+  .dropdown ul li[aria-selected="true"] {
+    background-color: #0071c5;
+    color: #fff;
+  }
+  
+  .dropdown button {
+    display: block;
+    width: 130px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: left;
+    color: white;
+    background-color: #901c1c;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .dropdown button::after {
+    content: "\f078";
+    font-family: "Font Awesome 5 Free";
+    position: absolute;
+    right: 0.5rem;
+    font-size: 1rem;
+    transition: transform 0.3s ease-out;
+  }
+  .dropdown button.active::after {
+    transform: rotate(180deg);
+  }
+  .dropdown[aria-expanded="true"] button::after {
+    content: "\25B4";
+  }
+
+#sort-images-select option {
+    padding: 2rem;
+}
+
+main label {
+    margin: 0 1rem 0 5rem;
+    font-weight: bold;
+  }
+  
+  #photographer-images {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+  }
+  video{
+    width: 500px;
+  }
+  #photographer-images img {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    margin: 0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  #photographer-images figure {
+    margin-left: 5rem;
+  }
+  #photographer-images figcaption {
+    font-size: 1.5rem;
+    /* margin-left: 1rem; */
+    color: #901c1c;
+  }
+  #photographer-images figcaption span {
+    text-align: right;
+    color: #901c1c;
+  }
+
+ .lightbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0);
+  transform: translate(-50%, -50%) scale(0);
+}
+.border-lightbox{
+  position: relative;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1253px;
+  height: 984px;
+}
+.lightbox-img {
+  display: block;
+  margin: 0;
+  max-width: 1050px;
+  max-height: 900px;
+  border-radius: 5px;
+  transition: all 0.1s ease-in-out;
+}
+
+.close {
+  position: absolute;
+  color: #901c1c;
+  font-size: 100px;
+  transition: 0.6s ease;
+  top: 80px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.prev, .next {
+  font-size: 60px;
+  font-weight: bold;
+  padding: 16px;
+  color: #901c1c;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.1s ease-in-out;
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
 }

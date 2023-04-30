@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/photographer.css" rel="stylesheet" type="text/css" />
   <meta charset="utf-8">
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -19,12 +19,17 @@
   </header>
   <main id="main">
     <div class="photograph-header">
+      <div class="photograph-header__bloc-titre">
+        <h1 class="photograph-name"></h1>
+        <p class="photograph-location"></p>
+        <p class="photograph-tagline"></p>
+      </div>
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
 
 
 
-    <label for="sort-images-select">Trier par :</label>
+    <label for="sort-images-select">Trier par</label>
     <div class="dropdown">
       <button id="sort-images-button" role="button" aria-haspopup="listbox" aria-expanded="false"
         aria-labelledby="sort-images-select">
