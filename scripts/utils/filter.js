@@ -4,6 +4,8 @@ const sortImagesButton = document.getElementById('sort-images-button');
 const sortDropdown = sortImagesSelect.parentElement
 const lightboxImg = document.querySelector('.lightbox-img');
 
+// let imgTitle = "";
+
 sortImagesButton.addEventListener('click', event => {
   sortImagesButton.setAttribute('aria-expanded', 'true');
   sortImagesButton.classList.toggle('active');
@@ -29,7 +31,7 @@ function sortImagesBy(property) {
 function displayImages(images) {
   imagesContainer.innerHTML = '';
   images.forEach(image => {
-
+    // imgTitle = image.title;
 
     const figure = document.createElement('figure');
     const img = document.createElement('img');
@@ -46,24 +48,17 @@ function displayImages(images) {
   });
   
   const imagesLightbox = document.querySelectorAll('#photographer-images figure img');
-  // let currentIndex = 0;
-  // let x=0;
-  // let y=0;
+  console.log(imagesLightbox);
   imagesLightbox.forEach((image, index) => {
     image.addEventListener('click', () => {
       const x = event.clientX;
       const y = event.clientY;
+      const imgTitle = image.getAttribute('alt')
       lightboxImg.setAttribute('src', image.getAttribute('src'));
-      // currentIndex = index;
+      lightboxCaption.innerText = imgTitle;
       openLightbox(imagesLightbox, x, y, index);
-
-
     });
   });
-  
-
-
-
 }
 
 sortImagesSelect.addEventListener('click', event => {
