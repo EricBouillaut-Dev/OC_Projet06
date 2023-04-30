@@ -1,22 +1,17 @@
-const images = document.querySelectorAll('#photographer-images figure img');
+function openLightbox(images, x, y, currentIndex){
 const lightbox = document.querySelector('.lightbox');
-const lightboxImg = document.querySelector('.lightbox-img');
 const prevButton = document.querySelector('.prev');
 const nextButton = document.querySelector('.next');
 
-let currentIndex = 0;
-
-images.forEach((image, index) => {
-  image.addEventListener('click', () => {
-    lightboxImg.setAttribute('src', image.getAttribute('src'));
-    currentIndex = index;
-    lightbox.style.display = 'flex';
-  });
-});
+lightbox.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+lightbox.style.top = `${y}px`;
+lightbox.style.left = `${x}px`;
+lightbox.style.transform = `translate(-${x}px, -${y}px) scale(1)`;
 
 const closeButton = document.querySelector('.close');
 closeButton.addEventListener('click', () => {
-  lightbox.style.display = 'none';
+  lightbox.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+  lightbox.style.transform = `translate(-50%, -50%) scale(0)`;
 });
 
 prevButton.addEventListener('click', () => {
@@ -50,3 +45,4 @@ document.addEventListener('keydown', (event) => {
     closeButton.click();
   }
 });
+}

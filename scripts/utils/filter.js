@@ -2,6 +2,7 @@ const imagesContainer = document.getElementById('photographer-images');
 const sortImagesSelect = document.getElementById('sort-images-select');
 const sortImagesButton = document.getElementById('sort-images-button');
 const sortDropdown = sortImagesSelect.parentElement
+const lightboxImg = document.querySelector('.lightbox-img');
 
 sortImagesButton.addEventListener('click', event => {
   sortImagesButton.setAttribute('aria-expanded', 'true');
@@ -43,6 +44,26 @@ function displayImages(images) {
     
     imagesContainer.appendChild(figure);
   });
+  
+  const imagesLightbox = document.querySelectorAll('#photographer-images figure img');
+  // let currentIndex = 0;
+  // let x=0;
+  // let y=0;
+  imagesLightbox.forEach((image, index) => {
+    image.addEventListener('click', () => {
+      const x = event.clientX;
+      const y = event.clientY;
+      lightboxImg.setAttribute('src', image.getAttribute('src'));
+      // currentIndex = index;
+      openLightbox(imagesLightbox, x, y, index);
+
+
+    });
+  });
+  
+
+
+
 }
 
 sortImagesSelect.addEventListener('click', event => {

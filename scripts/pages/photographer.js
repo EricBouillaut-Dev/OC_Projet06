@@ -32,12 +32,12 @@ const mediaImages = Object.values(photographer.media).filter(obj => obj.image);
 
   const Images = mediaImages.map(img => img.image);
   
-  console.log(Images);
+  // console.log(Images);
   
 // launchLighbox();
 // const images=photographer.media
-console.log(photographer.name);
-console.log(photographer.tagline);
+// console.log(photographer.name);
+// console.log(photographer.tagline);
 
 // function exportToJsonFile(jsonData, fileName) {
 //     let dataStr = JSON.stringify(jsonData, null, 2);
