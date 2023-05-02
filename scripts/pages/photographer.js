@@ -1,33 +1,72 @@
-const loader = document.querySelector('.loader');
-loader.style.display = 'flex';
+function sortMediaBy(property,media) {
+  const updateButton = property.replace('likes','Popularité').replace('date','Date').replace('title','Titre');
+  sortImagesButton.innerText = updateButton;
+  return media.sort((a, b) => a[property] > b[property] ? 1 : -1);
+}
 
-let params = (new URL(document.location)).searchParams;
-let photographerId = params.get('id');
+function displayMedia(medias) {
+  const imagesContainer = document.getElementById('photographer-images');
+  imagesContainer.innerHTML = "";
+  medias.forEach((media) => {
+    const mediaModel = mediaFactory(media);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    imagesContainer.appendChild(mediaCardDOM);
+  });
+  const imagesLightbox = document.querySelectorAll('#photographer-images figure img');
+  imagesLightbox.forEach((image, index) => {
+    image.addEventListener('click', () => {
+      const x = event.clientX;
+      const y = event.clientY;
+      const imgTitle = image.getAttribute('alt')
+      lightboxImg.setAttribute('src', image.getAttribute('src'));
+      lightboxCaption.innerText = imgTitle;
+      openLightbox(imagesLightbox, x, y, index);
+    });
+  });
 
-const photographer = JSON.parse(localStorage.getItem(`OC_P6_photographer-${photographerId}`));
-const mediaImages = Object.values(photographer.media).filter(obj => obj.image);
-const mediaVideo = Object.values(photographer.media).filter(obj => obj.video);
-// const Images = mediaImages.map(img => img.image);
+};
 
+async function init() {
+  const loader = document.querySelector('.loader');
+  loader.style.display = 'flex';
 
-console.log(mediaImages);
-console.log(mediaVideo);
+  const params = (new URL(document.location)).searchParams;
+  const photographerId = params.get('id');
 
-const photographName = document.querySelector('.photograph-name');
-const photographLocation = document.querySelector('.photograph-location');
-const photographTagline = document.querySelector('.photograph-tagline');
-const photograpHeader = document.querySelector(".photograph-header");
+  const photographers = await getPhotographers();
+  const photographer = photographers.find(p => p.id == photographerId);
 
-photographName.innerText = photographer.name;
-photographLocation.innerText = `${photographer.city}, ${photographer.country}`;
-photographTagline.innerText = photographer.tagline;
+  headerFactory(photographer);
+  const sortedMedias = sortMediaBy('likes',photographer.medias);
+  displayMedia(sortedMedias);
 
-const picture = `assets/photographers/small/${photographer.portrait}`;
-const img = document.createElement( 'img' );
-img.setAttribute("src", picture);
-img.setAttribute('alt', photographer.title)
-photograpHeader.appendChild(img);
-
-loader.style.display = 'none';
-
+  sortImagesSelect.addEventListener('click', event => {
+    if (event.target.tagName === 'LI') {
+      const selectedOption = event.target.getAttribute('data-value');
+      const sortedMedia = sortMediaBy(selectedOption,photographer.medias);
+      displayMedia(sortedMedia);
+    }
   
+  });
+  loader.style.display = 'none';
+};
+
+const sortImagesSelect = document.getElementById('sort-images-select');
+const sortImagesButton = document.getElementById('sort-images-button');
+const sortDropdown = sortImagesSelect.parentElement
+const lightboxImg = document.querySelector('.lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+
+sortImagesButton.addEventListener('click', event => {
+  sortImagesButton.setAttribute('aria-expanded', 'true');
+  sortImagesButton.classList.toggle('active');
+  sortImagesSelect.classList.toggle('active');
+});
+
+sortDropdown.addEventListener('mouseleave', event => {
+  sortImagesButton.setAttribute('aria-expanded', 'false');
+  sortImagesButton.removeAttribute ('class');
+  sortImagesSelect.removeAttribute ('class');
+});
+
+init();
