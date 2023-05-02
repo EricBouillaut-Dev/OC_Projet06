@@ -217,12 +217,9 @@ main label {
   #photographer-images {
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: center; */
   }
-  video{
-    width: 500px;
-  }
-  #photographer-images img {
+  
+  #photographer-images img, video {
     width: 350px;
     height: 300px;
     object-fit: cover;
@@ -231,16 +228,29 @@ main label {
     cursor: pointer;
   }
   #photographer-images figure {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     margin-left: 5rem;
+
   }
-  #photographer-images figcaption {
+  figcaption {
     font-size: 1.5rem;
-    /* margin-left: 1rem; */
     color: #901c1c;
+    width: 350px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
-  #photographer-images figcaption span {
-    text-align: right;
-    color: #901c1c;
+
+  .video-caption::before{
+    content: "[VIDEO]";
+    position: absolute;
+    color: white;
+    background-color: #901c1c;
+    padding: 0.5rem;
+    border-radius: 0 10px 0 0;
+    bottom: 1.95rem;
   }
 
  .lightbox {
