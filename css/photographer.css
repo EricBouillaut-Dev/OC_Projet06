@@ -10,6 +10,14 @@ html {
   
 #contact_modal {
     display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .photograph-header {
@@ -51,13 +59,41 @@ html {
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
-    width: 50%;
+    width: 669px;
+    height: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 35px;
+    padding: 1rem 2rem;
     margin: auto;
+}
+
+#contact_modal header{
+  position: relative;
+}
+
+#contact_modal h2, #contact_modal p{
+  text-align: left;
+  margin: 0;
+  font-size: 4.5rem;
+}
+#contact_modal img{
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+}
+
+#message{
+  width: 100%;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  resize: none;
+}
+
+form input{
+  margin: 0.3rem 0 0.3rem 0;
+  font-size: 2rem;
 }
 
 .modal header {
@@ -241,6 +277,9 @@ main label {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  figure{
+    margin: 0;
   }
 
   .video-caption::before{
