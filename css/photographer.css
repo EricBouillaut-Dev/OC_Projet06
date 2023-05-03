@@ -67,8 +67,9 @@ html {
     justify-content: space-between;
     padding: 1rem 2rem;
     margin: auto;
-}
-
+    animation: modalopen 0.3s;
+    
+  }
 #contact_modal header{
   position: relative;
 }
@@ -262,6 +263,7 @@ main label {
     margin: 0;
     border-radius: 5px;
     cursor: pointer;
+    padding-top: 1rem;
   }
   #photographer-images figure {
     display: flex;
@@ -277,6 +279,7 @@ main label {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: .05rem 0 0.5rem 0;
   }
   figure{
     margin: 0;
@@ -289,7 +292,7 @@ main label {
     background-color: #901c1c;
     padding: 0.5rem;
     border-radius: 0 10px 0 0;
-    bottom: 1.95rem;
+    bottom: 2.5rem;
   }
 
  .lightbox {
@@ -302,7 +305,7 @@ main label {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 0);
+  /* background-color: rgba(255, 255, 255, 0); */
   transform: translate(-50%, -50%) scale(0);
 }
 .border-lightbox{
@@ -310,8 +313,11 @@ main label {
   display:flex;
   justify-content: space-between;
   align-items: center;
-  width: 1253px;
-  height: 984px;
+  max-width: 1253px;
+  max-height: 984px;
+  padding-top: 2rem;
+  border-radius: 5px;
+  /* background-color: rgba(255, 255, 255, 0); */
 }
 .lightbox-img {
   display: block;
@@ -334,8 +340,10 @@ main label {
   color: #901c1c;
   font-size: 100px;
   transition: 0.6s ease;
-  top: 80px;
-  right: 30px;
+  top: -1.5rem;
+  right: 0.5rem;
+  padding: 0;
+  margin: 0;
   cursor: pointer;
 }
 
@@ -350,9 +358,19 @@ main label {
 }
 
 .prev {
-  left: 0;
+  padding-left: 1rem;
 }
 
 .next {
-  right: 0;
+  padding-right: 1rem;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -11,7 +11,6 @@ function openLightbox(medias, x, y, currentIndex){
 
     if (clone instanceof HTMLVideoElement) {
       clone.controls = true;
-      // clone.className = "lightbox-img";
       clone.id = "video";
     }
 
@@ -26,25 +25,25 @@ function openLightbox(medias, x, y, currentIndex){
   const nextButton = document.querySelector('.next');
   const closeButton = document.querySelector('.close');
   const lightbox = document.querySelector('.lightbox');
-  // const lightboxImg = document.querySelector('.lightbox-img');
+  const borderLightbox = document.querySelector('.border-lightbox');
 
   lightbox.style.top = `${y}px`;
   lightbox.style.left = `${x}px`;
-  lightbox.style.backgroundColor = 'rgba(255, 255, 255, 1)';
   lightbox.style.transform = `translate(-${x}px, -${y}px) scale(1)`;
-  lightbox.style.transition = 'transform 0.5s ease-in, background-color 0.5s cubic-bezier( 1, 0, 1, 0 )';
-  prevButton.innerHTML = '&#10094;';
-  nextButton.innerHTML = '&#10095;';
-  closeButton.innerHTML = '&times;';
+  lightbox.style.transition = 'transform 0.5s ease-in';
+  setTimeout(() => {
+    lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+  }, 500);
+  borderLightbox.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+  borderLightbox.style.transition = "background-color 0.5s cubic-bezier( 1, 0, 1, 0 )"
 
   closeButton.addEventListener('click', () => {
     document.body.style.overflow = 'auto';
-    lightbox.style.backgroundColor = 'rgba(255, 255, 255, 0)';
     lightbox.style.transform = `translate(-50%, -50%) scale(0)`;
-    lightbox.style.transition = 'transform 0.5s ease-in, background-color 0.2s ease-out';
-    prevButton.innerText = '';
-    nextButton.innerText = '';
-    closeButton.innerText = '';
+    lightbox.style.transition = 'transform 0.5s ease-in';
+    lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0)';
+    borderLightbox.style.backgroundColor = 'rgba(255, 255, 255, 0)';
+    borderLightbox.style.transition = "background-color 0.2s ease-out"
   });
 
   prevButton.addEventListener('click', () => {
