@@ -12,6 +12,7 @@ function displayMedia(medias) {
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     imagesContainer.appendChild(mediaCardDOM);
   });
+
   const imagesLightbox = document.querySelectorAll('#photographer-images figure img, #photographer-images figure video');
   imagesLightbox.forEach((media, index) => {
     media.addEventListener('click', () => {
@@ -38,9 +39,8 @@ function displayMedia(medias) {
 };
 
 async function init() {
-  const loader = document.querySelector('.loader');
   loader.style.display = 'flex';
-
+  
   const params = (new URL(document.location)).searchParams;
   const photographerId = params.get('id');
 
@@ -61,11 +61,11 @@ async function init() {
   });
   loader.style.display = 'none';
 };
+const loader = document.querySelector('.loader');
 
 const sortImagesSelect = document.getElementById('sort-images-select');
 const sortImagesButton = document.getElementById('sort-images-button');
 const sortDropdown = sortImagesSelect.parentElement
-// const lightboxImgRef = document.querySelector('#lightbox-caption');
 const lightboxCaption = document.getElementById('lightbox-caption');
 
 sortImagesButton.addEventListener('click', event => {
