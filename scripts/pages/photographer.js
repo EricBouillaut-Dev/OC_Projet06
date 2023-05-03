@@ -12,13 +12,24 @@ function displayMedia(medias) {
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     imagesContainer.appendChild(mediaCardDOM);
   });
-  const imagesLightbox = document.querySelectorAll('#photographer-images figure img');
-  imagesLightbox.forEach((image, index) => {
-    image.addEventListener('click', () => {
+  const imagesLightbox = document.querySelectorAll('#photographer-images figure img, #photographer-images figure video');
+  imagesLightbox.forEach((media, index) => {
+    media.addEventListener('click', () => {
       const x = event.clientX;
       const y = event.clientY;
-      const imgTitle = image.getAttribute('alt')
-      lightboxImg.setAttribute('src', image.getAttribute('src'));
+      
+      const clone = media.cloneNode(true);
+      document.querySelector('.lightbox-img').remove();
+            
+      lightboxCaption.parentNode.insertBefore(clone, lightboxCaption);
+      clone.className = "lightbox-img";
+      if (clone instanceof HTMLVideoElement) {
+        clone.controls = true;
+        clone.id = "video";
+      }
+  
+      const imgTitle = media.getAttribute('alt');
+      console.log(media);
       lightboxCaption.innerText = imgTitle;
       openLightbox(imagesLightbox, x, y, index);
     });
@@ -54,7 +65,7 @@ async function init() {
 const sortImagesSelect = document.getElementById('sort-images-select');
 const sortImagesButton = document.getElementById('sort-images-button');
 const sortDropdown = sortImagesSelect.parentElement
-const lightboxImg = document.querySelector('.lightbox-img');
+// const lightboxImgRef = document.querySelector('#lightbox-caption');
 const lightboxCaption = document.getElementById('lightbox-caption');
 
 sortImagesButton.addEventListener('click', event => {

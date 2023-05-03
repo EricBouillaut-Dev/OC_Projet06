@@ -1,8 +1,32 @@
-function openLightbox(images, x, y, currentIndex){
-  const lightbox = document.querySelector('.lightbox');
+function openLightbox(medias, x, y, currentIndex){
+
+  function copyMedia(){
+    const clone = medias[currentIndex].cloneNode(true);
+    document.querySelector('.lightbox-img').remove();
+    
+    lightboxCaption.parentNode.insertBefore(clone, lightboxCaption);
+    clone.className = "lightbox-img";
+  
+    const newImageCaption = medias[currentIndex].getAttribute('alt');
+
+    if (clone instanceof HTMLVideoElement) {
+      clone.controls = true;
+      // clone.className = "lightbox-img";
+      clone.id = "video";
+    }
+
+    clone.style.opacity = '0';
+    lightboxCaption.innerText = newImageCaption;
+    setTimeout(() => {
+      clone.style.opacity = '1';
+    }, 100);
+  }
+
   const prevButton = document.querySelector('.prev');
   const nextButton = document.querySelector('.next');
   const closeButton = document.querySelector('.close');
+  const lightbox = document.querySelector('.lightbox');
+  // const lightboxImg = document.querySelector('.lightbox-img');
 
   lightbox.style.top = `${y}px`;
   lightbox.style.left = `${x}px`;
@@ -26,33 +50,17 @@ function openLightbox(images, x, y, currentIndex){
   prevButton.addEventListener('click', () => {
     currentIndex--;
     if (currentIndex < 0) {
-      currentIndex = images.length - 1;
+      currentIndex = medias.length - 1;
     }
-    const newImageSrc = images[currentIndex].getAttribute('src');
-    const newImageCaption = images[currentIndex].getAttribute('alt');
-
-    lightboxImg.style.opacity = '0';
-    setTimeout(() => {
-      lightboxImg.setAttribute('src', newImageSrc);
-      lightboxCaption.innerText = newImageCaption;
-      lightboxImg.style.opacity = '1';
-    }, 100);
+    copyMedia();
   });
 
   nextButton.addEventListener('click', () => {
     currentIndex++;
-    if (currentIndex >= images.length) {
+    if (currentIndex >= medias.length) {
       currentIndex = 0;
     }
-    const newImageSrc = images[currentIndex].getAttribute('src');
-    const newImageCaption = images[currentIndex].getAttribute('alt');
-
-    lightboxImg.style.opacity = '0';
-    setTimeout(() => {
-      lightboxImg.setAttribute('src', newImageSrc);
-      lightboxCaption.innerText = newImageCaption;
-      lightboxImg.style.opacity = '1';
-    }, 100);
+    copyMedia();
   });
 
   document.addEventListener('keydown', (event) => {

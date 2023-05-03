@@ -5,7 +5,7 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         article.innerHTML = `
-            <a href="photographer.html?id=${id}&name=${name}&location=${location}&tagline=${tagline}&url=${portrait}">
+            <a href="photographer.html?id=${id}">
                 <img src=${portrait}>
                 <h2 class="photograph-name">${name}</h2>
             </a>
@@ -32,7 +32,7 @@ function mediaFactory(media) {
         }
         else{
             figure.innerHTML = `
-            <video src="${uri}"> type="video/mp4" alt="${title}" title="${title}></video>
+            <video src="${uri}" type="video/mp4" alt="${title}" title="${uri}"></video>
             <figcaption class="video-caption" alt="${title}" title="${title}">${title}</figcaption>
         `;
         }
