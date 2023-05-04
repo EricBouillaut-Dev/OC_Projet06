@@ -1,7 +1,8 @@
 function sortMediaBy(property,media) {
   const updateButton = property.replace('likes','Popularité').replace('date','Date').replace('title','Titre');
   sortImagesButton.innerText = updateButton;
-  return media.sort((a, b) => a[property] > b[property] ? 1 : -1);
+  if(updateButton === 'Titre'){return media.sort((a, b) => a[property] > b[property] ? 1 : -1);};
+  return media.sort((b, a) => a[property] > b[property] ? 1 : -1);
 }
 
 function displayMedia(medias) {
@@ -47,6 +48,9 @@ async function init() {
   const photographers = await getPhotographers();
   const photographer = photographers.find(p => p.id == photographerId);
 
+  const countLikes = document.querySelector('.count-likes');
+  const tarif = document.querySelector('.tarif');
+
   headerFactory(photographer);
   const sortedMedias = sortMediaBy('likes',photographer.medias);
   displayMedia(sortedMedias);
@@ -59,6 +63,12 @@ async function init() {
     }
   
   });
+// console.log(photographer.price);
+  const totalLikes = photographer.medias.reduce((sum, obj) => sum + obj.likes, 0);
+  countLikes.innerText = `${totalLikes}`;
+  tarif.innerText = `${photographer.price}€/jour`
+
+
   loader.style.display = 'none';
 };
 const loader = document.querySelector('.loader');

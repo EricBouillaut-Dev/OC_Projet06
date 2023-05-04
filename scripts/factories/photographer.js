@@ -36,6 +36,10 @@ function mediaFactory(media) {
             <figcaption class="video-caption" alt="${title}" title="${title}">${title}</figcaption>
         `;
         }
+        figure.innerHTML += `
+            <span>${likes}</span>           
+            <i class="fa-solid fa-heart"></i>
+        `
         return (figure);
     }
     return { title, likes, price, date, type, url, getMediaCardDOM }
