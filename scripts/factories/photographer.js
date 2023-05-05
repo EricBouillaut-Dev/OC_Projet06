@@ -19,20 +19,20 @@ function photographerFactory(data) {
 }
 
 function mediaFactory(media) {
-    const { title, likes, price, date, type, url} = media;
+    const { title, likes, price, date, type, url, id} = media;
 
     function getMediaCardDOM() {
         const figure = document.createElement( 'figure' );
         const uri = url.replace(" ","%20")
         if(type === "image"){
             figure.innerHTML = `
-            <img src="${uri}" alt="${title}" title="${uri}">
+            <img src="${uri}" alt="${title}" title="${uri}" id="${id}">
             <figcaption alt="${title}" title="${title}">${title}</figcaption>
         `;
         }
         else{
             figure.innerHTML = `
-            <video src="${uri}" type="video/mp4" alt="${title}" title="${uri}"></video>
+            <video src="${uri}" type="video/mp4" alt="${title}" title="${uri}" id="${id}"></video>
             <figcaption class="video-caption" alt="${title}" title="${title}">${title}</figcaption>
         `;
         }

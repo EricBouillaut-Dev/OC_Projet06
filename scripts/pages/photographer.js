@@ -13,76 +13,82 @@ function displayMedia(medias) {
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     imagesContainer.appendChild(mediaCardDOM);
   });
-
-  const imagesLightbox = document.querySelectorAll('#photographer-images figure img, #photographer-images figure video');
-  imagesLightbox.forEach((media, index) => {
-    media.addEventListener('click', () => {
-      const x = event.clientX;
-      const y = event.clientY;
-      
-      const clone = media.cloneNode(true);
-      document.querySelector('.lightbox-img').remove();
-            
-      lightboxCaption.parentNode.insertBefore(clone, lightboxCaption);
-      clone.className = "lightbox-img";
-      if (clone instanceof HTMLVideoElement) {
-        clone.controls = true;
-        clone.id = "video";
-      }
-  
-      const imgTitle = media.getAttribute('alt');
-      console.log(media);
-      lightboxCaption.innerText = imgTitle;
-      openLightbox(imagesLightbox, x, y, index);
-    });
-  });
-
 };
 
 async function init() {
-  loader.style.display = 'flex';
-  
+  const loader = document.querySelector('.loader');
+  loader.style.display = 'flex'; // On affiche le loader en attendant le résultat du process
+
+  // Récupération de l'ID du photographe
   const params = (new URL(document.location)).searchParams;
   const photographerId = params.get('id');
 
+  // Récupération de l'objet photographe correspondant avec ses medias
   const photographers = await getPhotographers();
   const photographer = photographers.find(p => p.id == photographerId);
 
-  const countLikes = document.querySelector('.count-likes');
-  const tarif = document.querySelector('.tarif');
-
-  headerFactory(photographer);
-  const sortedMedias = sortMediaBy('likes',photographer.medias);
-  displayMedia(sortedMedias);
-
-  sortImagesSelect.addEventListener('click', event => {
+  // Evenement 'click' sur toute la page
+  const main = document.getElementById('main');
+  main.addEventListener('click', event => {
+    // On attend un click sur les choix du filtre
     if (event.target.tagName === 'LI') {
       const selectedOption = event.target.getAttribute('data-value');
       const sortedMedia = sortMediaBy(selectedOption,photographer.medias);
       displayMedia(sortedMedia);
+    };
+
+    // On attend un click sur le bouton de la modale de contact (formulaire)
+    if (event.target.className === 'contact_button') {
+      displayModal();
+    };
+
+    // On attend un click sur le bouton du filtre
+    if (event.target.id === 'sort-images-button') {
+      sortImagesButton.setAttribute('aria-expanded', 'true');
+      sortImagesButton.classList.toggle('active');
+      sortImagesSelect.classList.toggle('active');
     }
-  
+
+    // On récupère les ccordonnées du click
+    const x = event.clientX;
+    const y = event.clientY;
+
+    // On récupère l'index de l'image cliquée dans les medias
+    if (event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') {
+      const photographerMedias = photographer.medias;
+      const mediaId = event.target.id;
+      const media = photographerMedias.find(media => media.id == mediaId);
+      const mediaIndex = photographerMedias.indexOf(media);
+      // console.log(mediaIndex);
+      openLightbox (photographerMedias, x, y, mediaIndex);
+    }
   });
-// console.log(photographer.price);
+  
+  // Récupération des valeurs pour la bannière des likes
+  const countLikes = document.querySelector('.count-likes');
+  const tarif = document.querySelector('.tarif');
+
+  // On tag le total des likes et du tarif journalier dans la bannière
   const totalLikes = photographer.medias.reduce((sum, obj) => sum + obj.likes, 0);
   countLikes.innerText = `${totalLikes}`;
   tarif.innerText = `${photographer.price}€/jour`
 
+  // On affiche l'entete du photographe
+  headerFactory(photographer);
+  const sortedMedias = sortMediaBy('likes',photographer.medias);
+  
+  // On affiche la galerie du photographe
+  displayMedia(sortedMedias);
 
+  // On ferme le loader
   loader.style.display = 'none';
 };
-const loader = document.querySelector('.loader');
+
 
 const sortImagesSelect = document.getElementById('sort-images-select');
 const sortImagesButton = document.getElementById('sort-images-button');
 const sortDropdown = sortImagesSelect.parentElement
 const lightboxCaption = document.getElementById('lightbox-caption');
-
-sortImagesButton.addEventListener('click', event => {
-  sortImagesButton.setAttribute('aria-expanded', 'true');
-  sortImagesButton.classList.toggle('active');
-  sortImagesSelect.classList.toggle('active');
-});
 
 sortDropdown.addEventListener('mouseleave', event => {
   sortImagesButton.setAttribute('aria-expanded', 'false');

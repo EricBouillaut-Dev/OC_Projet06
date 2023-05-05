@@ -24,7 +24,7 @@
         <p class="photograph-location"></p>
         <p class="photograph-tagline"></p>
       </div>
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+      <button class="contact_button">Contactez-moi</button>
     </div>
 
 
@@ -46,22 +46,20 @@
       <span class="count-likes"></span>
       <span class="tarif"></span>
     </div>
-
-    <div class="lightbox">
-      <div class="border-lightbox">
-        <span class="close">&times;</span>
-        <a class="prev">&#10094;</a>
-        <figure>
-          <img class="lightbox-img">
-          <figcaption id="lightbox-caption"></figcaption>
-        </figure>
-        <a class="next">&#10095;</a>
-      </div>
-    </div>
-
-
-
   </main>
+
+  <div class="lightbox">
+    <div class="border-lightbox">
+      <span class="close">&times;</span>
+      <a class="prev">&#10094;</a>
+      <figure class="lightbox-img-container">
+        <img class="lightbox-img">
+        <figcaption class="lightbox-caption"></figcaption>
+      </figure>
+      <a class="next">&#10095;</a>
+    </div>
+  </div>
+
   <div id="contact_modal">
     <div class="modal">
       <header>

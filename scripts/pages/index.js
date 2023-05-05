@@ -15,7 +15,7 @@ async function init() {
     const photographers = await getPhotographers();
     displayData(photographers);
     loader.style.display = 'none';
-  };
+};
 
 init();
     
