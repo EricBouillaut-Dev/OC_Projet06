@@ -62,6 +62,22 @@ async function init() {
       // console.log(mediaIndex);
       openLightbox (photographerMedias, x, y, mediaIndex);
     }
+
+    // On incrémente une seule fois les compteurs de likes lorsqu'on clique dessus
+    if (event.target.className === 'fa-solid fa-heart') {
+     
+      const liked = event.target.parentElement;
+      
+      if(!liked.classList.contains('liked')){
+        liked.classList.add('liked');
+        totalLikes ++;
+        countLikes.innerText = `${totalLikes}`;
+        const likeCount = liked.querySelector('span');
+        likeCount.textContent = parseInt(likeCount.textContent) + 1;
+        const heartIcons = liked.querySelector('.fa-solid.fa-heart');
+        heartIcons.style.color = '#df00df';
+      }
+    };
   });
   
   // Récupération des valeurs pour la bannière des likes
@@ -69,9 +85,21 @@ async function init() {
   const tarif = document.querySelector('.tarif');
 
   // On tag le total des likes et du tarif journalier dans la bannière
-  const totalLikes = photographer.medias.reduce((sum, obj) => sum + obj.likes, 0);
+  let totalLikes = photographer.medias.reduce((sum, obj) => sum + obj.likes, 0);
   countLikes.innerText = `${totalLikes}`;
   tarif.innerText = `${photographer.price}€/jour`
+
+  // const likeButtons = document.querySelectorAll('.fa-solid.fa-heart');
+  //   console.log(likeButtons);
+
+  // likeButtons.forEach(button => {
+  //   button.addEventListener('click', () => {
+  //     button.disabled = true; // désactiver le bouton
+  //     // effectuer l'action de like ici
+  //   });
+  // });
+
+
 
   // On affiche l'entete du photographe
   headerFactory(photographer);
