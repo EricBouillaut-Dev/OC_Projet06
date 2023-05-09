@@ -5,8 +5,8 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         article.innerHTML = `
-            <a href="photographer.html?id=${id}" alt="${name}">
-                <img src=${portrait}>
+            <a href="photographer.html?id=${id}">
+                <img src=${portrait} alt="${name}">
                 <h2 class="photograph-name">${name}</h2>
             </a>
             <p class="photograph-location">${location}</p>
