@@ -55,10 +55,15 @@ html {
     border-radius: 5px;
     cursor: pointer;
 }
-.contact_button:hover{
+.contact_button:hover, .contact_button:focus{
   background-color: #db8876;
   color: black;
 }
+
+/*--------------------
+  ------ Modale ------
+  --------------------
+*/
 
 .modal {
     border-radius: 5px;
@@ -168,7 +173,10 @@ form input {
     font-size: 1.1rem;
 }
 
-
+/*--------------------
+  ------ Filtre ------
+  --------------------
+*/
 .dropdown {
     position: relative;
     display: inline-block;
@@ -207,7 +215,7 @@ form input {
     border-top: 1px solid white;
   }
     
-  .dropdown ul li:hover {
+  .dropdown ul li:hover, .dropdown ul li:focus {
     background-color: #D3573C;
     border-radius: 2px;
   }
@@ -246,6 +254,10 @@ form input {
     content: "\25B4";
   }
 
+  /*--------------------
+    ------ Galerie -----
+    --------------------
+*/
 #sort-images-select option {
     padding: 2rem;
 }
@@ -329,6 +341,10 @@ main label {
     /* box-shadow: 5px -3px 10px 1px rgba(211,87,60,0.8) */
   }
 
+  /*-------------------
+    ------ Likes ------
+    -------------------
+*/
 .likes-banner{
   display: flex;
   justify-content: space-between;
@@ -349,8 +365,10 @@ main label {
   padding-left: 0.5rem;
 }
 
-
-
+/*--------------------
+  ------ Lightbox ------
+  --------------------
+*/
  .lightbox {
   display: flex;
   justify-content: center;

@@ -27,10 +27,15 @@ h2, p{
     font-weight: normal;
 }
 
-.logo {
+.logo{
     height: 50px;
     margin-left: 100px;
 }
+
+nav a{
+margin: 0;
+
+} 
 
 .photographer_section {
     display: grid;

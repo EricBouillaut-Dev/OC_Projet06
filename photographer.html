@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/8c5af481df.js" crossorigin="anonymous"></script>
-  <title>Fisheye - photographe </title>
+  <title>Fisheye - photographe</title>
 </head>
 
 <body>
@@ -15,7 +15,7 @@
     <div class="spin"></div>
   </div>
   <header>
-    <a href="index.html"><img src="assets/images/logo.png" class="logo" /></a>
+    <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"></a>
   </header>
   <main id="main">
     <div class="photograph-header">
@@ -24,7 +24,7 @@
         <p class="photograph-location"></p>
         <p class="photograph-tagline"></p>
       </div>
-      <button class="contact_button">Contactez-moi</button>
+      <button class="contact_button" aria-label="Bouton pour contacter le photographe">Contactez-moi</button>
     </div>
 
 
@@ -50,13 +50,13 @@
 
   <div class="lightbox">
     <div class="border-lightbox">
-      <span class="close">&times;</span>
-      <a class="prev">&#10094;</a>
+      <span class="close" aria-label="Fermer">&times;</span>
+      <a class="prev" aria-label="Image précédente">&#10094;</a>
       <figure class="lightbox-img-container">
-        <img class="lightbox-img">
+        <img class="lightbox-img" alt="">
         <figcaption class="lightbox-caption"></figcaption>
       </figure>
-      <a class="next">&#10095;</a>
+      <a class="next" aria-label="Image suivante">&#10095;</a>
     </div>
   </div>
 
@@ -65,7 +65,7 @@
       <header>
         <h2>Contactez-moi</h2>
         <p></p>
-        <img src="assets/icons/close.svg" onclick="closeModal()">
+        <img aria-label="Fermer" src="assets/icons/close.svg" onclick="closeModal()">
       </header>
       <form onsubmit="sendContact()">
         <label for="prenom">Prénom :</label>
@@ -80,7 +80,7 @@
         <label for="message">Votre message :</label>
         <textarea id="message" name="message" rows="5" required minlength="1"></textarea>
 
-        <button class="contact_button">Envoyer</button>
+        <button class="contact_button" aria-label="Bouton pour envoyer le formulaire de contact">Envoyer</button>
       </form>
     </div>
   </div>
