@@ -14,7 +14,7 @@
   <div class="loader">
     <div class="spin"></div>
   </div>
-  <header>
+  <header class="photographer-header">
     <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"></a>
   </header>
   <main id="main">
@@ -49,15 +49,15 @@
   </main>
 
   <div class="lightbox">
-    <div class="border-lightbox">
-      <span class="close" aria-label="Fermer">&times;</span>
+    <dialog class="border-lightbox">
+      <span class="close" aria-label="Fermer la lightbox">&times;</span>
       <a class="prev" aria-label="Image précédente">&#10094;</a>
       <figure class="lightbox-img-container">
         <img class="lightbox-img" alt="">
         <figcaption class="lightbox-caption"></figcaption>
       </figure>
       <a class="next" aria-label="Image suivante">&#10095;</a>
-    </div>
+    </dialog>
   </div>
 
   <div id="contact_modal">
@@ -69,18 +69,16 @@
       </header>
       <form onsubmit="sendContact()">
         <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required minlength="2" placeholder="Entrez votre prénom">
+        <input type="text" id="prenom" name="prenom" required minlength="2">
 
         <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required minlength="2" placeholder="Entrez votre nom">
+        <input type="text" id="nom" name="nom" required minlength="2">
 
         <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-          placeholder="Entrez votre adresse e-mail">
+        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
 
         <label for="message">Votre message :</label>
-        <textarea id="message" name="message" rows="5" required minlength="1"
-          placeholder="Entrez votre message"></textarea>
+        <textarea id="message" name="message" rows="5" required minlength="10"></textarea>
 
         <button class="contact_button" aria-label="Bouton pour envoyer le formulaire de contact">Envoyer</button>
       </form>

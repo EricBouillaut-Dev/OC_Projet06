@@ -19,7 +19,7 @@ html {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
-header{
+.photographer-header{
   display: flex;
   margin: 2rem 5rem;
 
@@ -85,6 +85,7 @@ header{
   }
 #contact_modal header{
   position: relative;
+  /* display: flex; */
 }
 
 #contact_modal h2, #contact_modal p{

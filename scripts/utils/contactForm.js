@@ -1,7 +1,6 @@
 function displayModal() {
     const photographerName = document.querySelector(".photograph-name");
     const photographerContact = document.querySelector(".modal p");
-    console.log(photographerName.innerText);
     photographerContact.innerText = `${photographerName.innerText}`;
 	modal.style.display = "flex";
 }

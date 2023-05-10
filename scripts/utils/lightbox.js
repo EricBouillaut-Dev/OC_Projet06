@@ -1,9 +1,5 @@
 // Ouverture de la lightbox
 function openLightbox(medias, x, y, currentIndex){
-  // event.stopPropagation();
-  console.log(x);
-  console.log(y);
-
   // On affiche la bonne image par rapport à son index dans le tableau des medias
   function showMedia(){
     const url = medias[currentIndex].url;
@@ -14,14 +10,14 @@ function openLightbox(medias, x, y, currentIndex){
     
     if(medias[currentIndex].type == 'image'){
       lightboxImgContainer.innerHTML = `
-        <img src="${url}" class="lightbox-img" alt="${title}" title="${url}">
-        <figcaption class="lightbox-caption" alt="${title}" title="${title}">${title}</figcaption>
+        <img src="${url}" class="lightbox-img" alt="${title}" title="${title}">
+        <figcaption class="lightbox-caption">${title}</figcaption>
       `;
     }
     else{
       lightboxImgContainer.innerHTML = `
-        <video controls src="${url}" class="lightbox-img" type="video/mp4" alt="${title}" title="${url}" id="video"></video>
-        <figcaption class="lightbox-caption" alt="${title}" title="${title}">${title}</figcaption>
+        <video controls src="${url}" class="lightbox-img" type="video/mp4" alt="${title}" title="${title}" id="video"></video>
+        <figcaption class="lightbox-caption">${title}</figcaption>
       `;
     }    
 
@@ -31,6 +27,7 @@ function openLightbox(medias, x, y, currentIndex){
     setTimeout(() => {
       newLightboxImg.style.opacity = 1;
     }, 100);
+    newLightboxImg.focus();
   }
 
   // initialisation des constantes

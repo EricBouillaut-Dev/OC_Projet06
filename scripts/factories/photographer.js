@@ -1,6 +1,5 @@
 function photographerFactory(data) {
     const { name, portrait, location, tagline, price, id} = data;
-    console.log(name);
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
@@ -27,14 +26,14 @@ function mediaFactory(media) {
         // figure.tabIndex = 0;
         if(type === "image"){
             figure.innerHTML = `
-            <img src="${uri}" alt="${title}" title="${uri}" id="${id}" tabindex="0">
-            <figcaption alt="${title}" title="${title}" tabindex="0">${title}</figcaption>
+            <img src="${uri}" alt="${title}" title="${title}" id="${id}" tabindex="0">
+            <figcaption>${title}</figcaption>
         `;
         }
         else{
             figure.innerHTML = `
-            <video src="${uri}" type="video/mp4" alt="${title}" title="${uri}" id="${id}" tabindex="0"></video>
-            <figcaption class="video-caption" alt="${title}" title="${title}" tabindex="0">${title}</figcaption>
+            <video src="${uri}" type="video/mp4" alt="${title}" title="${title}" id="${id}" tabindex="0"></video>
+            <figcaption class="video-caption">${title}</figcaption>
         `;
         }
         figure.innerHTML += `

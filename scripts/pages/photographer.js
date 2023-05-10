@@ -64,6 +64,7 @@ async function init() {
       sortImagesButton.setAttribute('aria-expanded', 'true');
       sortImagesButton.classList.toggle('active');
       sortImagesSelect.classList.toggle('active');
+      dropdownOptions[0].focus();
     }
 
     // On attend un click sur les choix du filtre
@@ -86,7 +87,6 @@ async function init() {
       const mediaId = event.target.id;
       const media = photographerMedias.find(media => media.id == mediaId);
       const mediaIndex = photographerMedias.indexOf(media);
-      // console.log(mediaIndex);
         openLightbox (photographerMedias, x, y, mediaIndex);
     }
 
@@ -109,8 +109,8 @@ async function init() {
 
   // Evenement des touches pour le menu déroulant (flèches pour la naviguation et entrée/espace pour valider)
   sortImagesSelect.addEventListener('keydown', function(event) {
-    const currentIndex = Array.prototype.indexOf.call(dropdownOptions, event.target);
 
+    const currentIndex = Array.prototype.indexOf.call(dropdownOptions, event.target);
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       selectedFilter(event.target, photographer.medias);
@@ -127,10 +127,10 @@ async function init() {
     }
   });
 
-  // Evenement de la validation de l'image au clavier (touche entrée/espace)
+  // Evenement de la validation de l'image au clavier (touche entrée/espace) pour lancer la lightbox
   photographerImage.addEventListener('keydown', function(event) {
 
-    if (event.key === 'Enter' || event.key === ' ') {
+    if ((event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') && (event.key === 'Enter' || event.key === ' ')) {
       event.preventDefault();
       const photographerMedias = photographer.medias;
       const mediaId = event.target.id;
