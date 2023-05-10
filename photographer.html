@@ -24,21 +24,21 @@
         <p class="photograph-location"></p>
         <p class="photograph-tagline"></p>
       </div>
-      <button class="contact_button" aria-label="Bouton pour contacter le photographe">Contactez-moi</button>
+      <button class="contact_button" aria-label="Contact me">Contactez-moi</button>
     </div>
 
 
 
-    <label for="sort-images-select">Trier par</label>
+    <label for="sort-images-select" aria-label="Order by">Trier par</label>
     <div class="dropdown">
       <button id="sort-images-button" role="button" aria-haspopup="listbox" aria-expanded="false"
         aria-labelledby="sort-images-select">
         Popularité
       </button>
-      <ul id="sort-images-select" role="listbox" aria-labelledby="sort-images-select">
-        <li role="listbox" tabindex="0" data-value="likes">Popularité</li>
-        <li role="listbox" tabindex="0" data-value="date">Date</li>
-        <li role="listbox" tabindex="0" data-value="title">Titre</li>
+      <ul id="sort-images-select" role="listbox" aria-activedescendant="" aria-labelledby="sort-images-select">
+        <li role="option" tabindex="0" data-value="likes" aria-selected="true">Popularité</li>
+        <li role="option" tabindex="0" data-value="date" aria-selected="false">Date</li>
+        <li role="option" tabindex="0" data-value="title" aria-selected="false">Titre</li>
       </ul>
     </div>
     <div id="photographer-images"></div>
@@ -46,7 +46,28 @@
       <span class="count-likes"></span>
       <span class="tarif"></span>
     </div>
+
+
+    <!-- <label id="sort-images-label" for="sort-images-select" aria-label="Order by">Trier par</label>
+    <div class="dropdown">
+      <button id="sort-images-button" role="button" aria-haspopup="listbox" aria-expanded="false"
+        aria-labelledby="sort-images-label sort-images-select">
+        Popularité
+      </button>
+      <ul id="sort-images-select" role="listbox" aria-activedescendant="" aria-labelledby="sort-images-label">
+        <li role="option" tabindex="0" data-value="likes" aria-selected="true">Popularité</li>
+        <li role="option" tabindex="0" data-value="date" aria-selected="false">Date</li>
+        <li role="option" tabindex="0" data-value="title" aria-selected="false">Titre</li>
+      </ul>
+    </div> -->
+
+
   </main>
+
+
+
+
+
 
   <div class="lightbox">
     <div class="border-lightbox">
@@ -69,16 +90,18 @@
       </header>
       <form onsubmit="sendContact()">
         <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required minlength="2">
+        <input type="text" id="prenom" name="prenom" required minlength="2" placeholder="Entrez votre prénom">
 
         <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required minlength="2">
+        <input type="text" id="nom" name="nom" required minlength="2" placeholder="Entrez votre nom">
 
         <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          placeholder="Entrez votre adresse e-mail">
 
         <label for="message">Votre message :</label>
-        <textarea id="message" name="message" rows="5" required minlength="1"></textarea>
+        <textarea id="message" name="message" rows="5" required minlength="1"
+          placeholder="Entrez votre message"></textarea>
 
         <button class="contact_button" aria-label="Bouton pour envoyer le formulaire de contact">Envoyer</button>
       </form>

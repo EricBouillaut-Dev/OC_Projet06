@@ -24,6 +24,7 @@ function mediaFactory(media) {
     function getMediaCardDOM() {
         const figure = document.createElement( 'figure' );
         const uri = url.replace(" ","%20")
+        figure.tabIndex = 0;
         if(type === "image"){
             figure.innerHTML = `
             <img src="${uri}" alt="${title}" title="${uri}" id="${id}">
@@ -42,7 +43,7 @@ function mediaFactory(media) {
         `
         return (figure);
     }
-    return { title, likes, price, date, type, url, getMediaCardDOM }
+    return { title, likes, price, date, type, url, id, getMediaCardDOM }
 }
 function headerFactory(photographer){
     const photographeName = document.querySelector('.photograph-name');
@@ -57,5 +58,6 @@ function headerFactory(photographer){
     const img = document.createElement( 'img' );
     img.setAttribute("src", photographer.portrait);
     img.setAttribute('alt', photographer.name)
+    img.setAttribute('tabindex', 0);
     photographeHeader.appendChild(img);
 }

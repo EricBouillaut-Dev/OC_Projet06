@@ -19,7 +19,11 @@ html {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
 }
+header{
+  display: flex;
+  margin: 2rem 5rem;
 
+}
 .photograph-header {
     display: flex;
     align-items: center;
@@ -149,7 +153,7 @@ form input {
 }
 .logo {
     height: 50px;
-    margin: 2rem 5rem;
+    /* margin: 2rem 5rem; */
 
 }
 
