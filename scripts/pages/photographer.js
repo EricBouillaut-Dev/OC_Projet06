@@ -1,3 +1,4 @@
+// Fonction de tri des images
 function sortMediaBy(property,media) {
   const updateButton = property.replace('likes','Popularité').replace('date','Date').replace('title','Titre');
   sortImagesButton.innerText = updateButton;
@@ -5,6 +6,7 @@ function sortMediaBy(property,media) {
   return media.sort((b, a) => a[property] > b[property] ? 1 : -1);
 }
 
+// Fonction pour afficher la galerie d'images
 function displayMedia(medias) {
   const imagesContainer = document.getElementById('photographer-images');
   imagesContainer.innerHTML = "";
@@ -15,23 +17,33 @@ function displayMedia(medias) {
   });
 };
 
-
+// Fonction de sélection du filtre (par click ou par touches)
 function selectedFilter(event,medias){
-  const selectedOption = event.getAttribute('data-value');
-  const sortedMedia = sortMediaBy(selectedOption,medias);
-  // const dropdownOptions = sortImagesSelect.querySelectorAll('li');
+
+  // Séléctionne le choix du filtre
   dropdownOptions.forEach(function(option) {
     option.setAttribute('aria-selected', 'false');
   });
   event.setAttribute('aria-selected', 'true');
+  const selectedOption = event.getAttribute('data-value');
+
+  // Tri les images
+  const sortedMedia = sortMediaBy(selectedOption,medias);
+
+  // ferme le menu déroulant
   sortImagesButton.setAttribute('aria-expanded', 'false');
   sortImagesButton.removeAttribute ('class');
   sortImagesSelect.removeAttribute ('class');
+
+  // Affiche les images
   displayMedia(sortedMedia);
 }
 
 
+
+// Fonction d'initialisation
 async function init() {
+  
   const loader = document.querySelector('.loader');
   loader.style.display = 'flex'; // On affiche le loader en attendant le résultat du process
 
@@ -57,25 +69,14 @@ async function init() {
     // On attend un click sur les choix du filtre
     if (event.target.tagName === 'LI') {
       selectedFilter(event.target, photographer.medias);
-      // const selectedOption = event.target.getAttribute('data-value');
-      // const sortedMedia = sortMediaBy(selectedOption,photographer.medias);
-      // // const dropdownOptions = sortImagesSelect.querySelectorAll('li');
-      // dropdownOptions.forEach(function(option) {
-      //   option.setAttribute('aria-selected', 'false');
-      // });
-      // event.target.setAttribute('aria-selected', 'true');
-      // sortImagesButton.setAttribute('aria-expanded', 'false');
-      // sortImagesButton.removeAttribute ('class');
-      // sortImagesSelect.removeAttribute ('class');
-      // displayMedia(sortedMedia);
     };
-
+    
     // On attend un click sur le bouton de la modale de contact (formulaire)
     if (event.target.className === 'contact_button') {
       displayModal();
     };
 
-    // On récupère les ccordonnées du click
+    // On récupère les coordonnées du click
     const x = event.clientX;
     const y = event.clientY;
 
@@ -86,7 +87,7 @@ async function init() {
       const media = photographerMedias.find(media => media.id == mediaId);
       const mediaIndex = photographerMedias.indexOf(media);
       // console.log(mediaIndex);
-      openLightbox (photographerMedias, x, y, mediaIndex);
+        openLightbox (photographerMedias, x, y, mediaIndex);
     }
 
     // On incrémente une seule fois les compteurs de likes lorsqu'on clique dessus
@@ -105,20 +106,20 @@ async function init() {
       }
     };
   });
-  
 
+  // Evenement des touches pour le menu déroulant (flèches pour la naviguation et entrée/espace pour valider)
   sortImagesSelect.addEventListener('keydown', function(event) {
     const currentIndex = Array.prototype.indexOf.call(dropdownOptions, event.target);
 
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       selectedFilter(event.target, photographer.medias);
-    } else if (event.key === 'ArrowUp') { // touche flèche haut
+    } else if (event.key === 'ArrowUp') {
       event.preventDefault();
       if (currentIndex > 0) {
         dropdownOptions[currentIndex - 1].focus();
       }
-    } else if (event.key === 'ArrowDown') { // touche flèche bas
+    } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       if (currentIndex < dropdownOptions.length - 1) {
         dropdownOptions[currentIndex + 1].focus();
@@ -126,10 +127,20 @@ async function init() {
     }
   });
 
-  
+  // Evenement de la validation de l'image au clavier (touche entrée/espace)
+  photographerImage.addEventListener('keydown', function(event) {
 
-
-
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      const photographerMedias = photographer.medias;
+      const mediaId = event.target.id;
+      const media = photographerMedias.find(media => media.id == mediaId);
+      const mediaIndex = photographerMedias.indexOf(media);
+      const x = window.innerWidth / 2;
+      const y = window.innerHeight / 2;
+      openLightbox (photographerMedias, x, y, mediaIndex);
+    }
+  });
 
   // Récupération des valeurs pour la bannière des likes
   const countLikes = document.querySelector('.count-likes');
@@ -157,6 +168,7 @@ const sortImagesButton = document.getElementById('sort-images-button');
 const dropdownOptions = sortImagesSelect.querySelectorAll('li');
 const sortDropdown = sortImagesSelect.parentElement
 const lightboxCaption = document.getElementById('lightbox-caption');
+const photographerImage = document.getElementById('photographer-images');
 
 sortDropdown.addEventListener('mouseleave', event => {
   sortImagesButton.setAttribute('aria-expanded', 'false');

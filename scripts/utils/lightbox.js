@@ -1,5 +1,8 @@
 // Ouverture de la lightbox
 function openLightbox(medias, x, y, currentIndex){
+  // event.stopPropagation();
+  console.log(x);
+  console.log(y);
 
   // On affiche la bonne image par rapport à son index dans le tableau des medias
   function showMedia(){
@@ -84,7 +87,7 @@ function openLightbox(medias, x, y, currentIndex){
     };
   });
 
-  // Prise en charge des flèches de direction du clavier ainsi que la touche echap
+  // Prise en charge des flèches de direction du clavier et de la touche echap
   document.addEventListener('keydown', (event) => {
     if (event.key === 'ArrowLeft') {
       prevButton.click();
