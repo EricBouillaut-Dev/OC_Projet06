@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "lint": "eslint --max-warnings=0 --fix ."
+    "lint": "eslint --max-warnings=0 ."
   }
 }

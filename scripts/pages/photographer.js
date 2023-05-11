@@ -98,7 +98,8 @@ async function init() {
     const y = event.clientY;
 
     // On récupère l'index de l'image cliquée dans les medias
-    if (event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') {
+    if ((event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') && event.target.parentElement.className !== 'photograph-header') {
+      console.log(event.target.parentElement.className);
       const photographerMedias = photographer.medias;
       const mediaId = event.target.id;
       const media = photographerMedias.find(media => media.id == mediaId);
