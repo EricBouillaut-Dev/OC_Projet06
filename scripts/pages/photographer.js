@@ -1,3 +1,20 @@
+function headerPhotographer(photographer){
+  const photographeName = document.querySelector('.photograph-name');
+  const photographeLocation = document.querySelector('.photograph-location');
+  const photographeTagline = document.querySelector('.photograph-tagline');
+  const photographeHeader = document.querySelector(".photograph-header");
+  
+  photographeName.innerText = photographer.name;
+  photographeLocation.innerText = photographer.location;
+  photographeTagline.innerText = photographer.tagline;
+  
+  const img = document.createElement( 'img' );
+  img.setAttribute("src", photographer.portrait);
+  img.setAttribute('alt', photographer.name)
+  img.setAttribute('tabindex', 0);
+  photographeHeader.appendChild(img);
+}
+
 // Fonction de tri des images
 function sortMediaBy(property,media) {
   const updateButton = property.replace('likes','Popularité').replace('date','Date').replace('title','Titre');
@@ -174,7 +191,7 @@ async function init() {
   tarif.innerText = `${photographer.price}€/jour`
 
   // On affiche l'entete du photographe
-  headerFactory(photographer);
+  headerPhotographer(photographer);
   const sortedMedias = sortMediaBy('likes',photographer.medias);
   
   // On affiche la galerie du photographe

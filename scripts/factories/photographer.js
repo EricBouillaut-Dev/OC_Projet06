@@ -44,19 +44,3 @@ function mediaFactory(media) {
     }
     return { title, likes, price, date, type, url, id, getMediaCardDOM }
 }
-function headerFactory(photographer){
-    const photographeName = document.querySelector('.photograph-name');
-    const photographeLocation = document.querySelector('.photograph-location');
-    const photographeTagline = document.querySelector('.photograph-tagline');
-    const photographeHeader = document.querySelector(".photograph-header");
-    
-    photographeName.innerText = photographer.name;
-    photographeLocation.innerText = photographer.location;
-    photographeTagline.innerText = photographer.tagline;
-    
-    const img = document.createElement( 'img' );
-    img.setAttribute("src", photographer.portrait);
-    img.setAttribute('alt', photographer.name)
-    img.setAttribute('tabindex', 0);
-    photographeHeader.appendChild(img);
-}
