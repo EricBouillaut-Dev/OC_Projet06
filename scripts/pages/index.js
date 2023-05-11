@@ -6,7 +6,7 @@ function displayData(photographers) {
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
-};
+}
 
 async function init() {
     const loader = document.querySelector('.loader');
@@ -15,7 +15,7 @@ async function init() {
     const photographers = await getPhotographers();
     displayData(photographers);
     loader.style.display = 'none';
-};
+}
 
 init();
     

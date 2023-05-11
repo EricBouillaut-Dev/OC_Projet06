@@ -62,7 +62,7 @@ function openLightbox(medias, x, y, currentIndex){
         currentIndex = 0;
       }
       showMedia();
-      };
+      }
     
     // Si click sur le bouton prev, in décrémente l'index puis on affiche le media
     if (event.target.className === 'prev') {
@@ -71,7 +71,7 @@ function openLightbox(medias, x, y, currentIndex){
         currentIndex = medias.length - 1;
       }
       showMedia();
-    };
+    }
 
     // Si click sur la croix, on ferme la lightbox avec l'animation inverse de l'ouverture
     if (event.target.className === 'close') {
@@ -81,7 +81,7 @@ function openLightbox(medias, x, y, currentIndex){
       lightbox.style.backgroundColor = 'rgba(0, 0, 0, 0)';
       borderLightbox.style.backgroundColor = 'rgba(255, 255, 255, 0)';
       borderLightbox.style.transition = "background-color 0.2s ease-out"
-    };
+    }
   });
 
   // Prise en charge des flèches de direction du clavier et de la touche echap

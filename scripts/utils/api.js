@@ -49,12 +49,12 @@ class Media {
     this._type = null
     this._url = null
   }
-  get id() {return this._id};
-  get photographerId() {return this._photographerId};
-  get title() {return this._title};
-  get likes() {return this._likes};
-  get date() {return this._date};
-  get price() {return this._price};
+  get id() {return this._id}
+  get photographerId() {return this._photographerId}
+  get title() {return this._title}
+  get likes() {return this._likes}
+  get date() {return this._date}
+  get price() {return this._price}
   get type() {
     if (this._type === null) {
       if (this._image) {

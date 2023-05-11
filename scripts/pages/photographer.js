@@ -19,7 +19,7 @@ function headerPhotographer(photographer){
 function sortMediaBy(property,media) {
   const updateButton = property.replace('likes','Popularité').replace('date','Date').replace('title','Titre');
   sortImagesButton.innerText = updateButton;
-  if(updateButton === 'Titre'){return media.sort((a, b) => a[property] > b[property] ? 1 : -1);};
+  if(updateButton === 'Titre'){return media.sort((a, b) => a[property] > b[property] ? 1 : -1);}
   return media.sort((b, a) => a[property] > b[property] ? 1 : -1);
 }
 
@@ -32,7 +32,7 @@ function displayMedia(medias) {
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     imagesContainer.appendChild(mediaCardDOM);
   });
-};
+}
 
 // Fonction de sélection du filtre (par click ou par touches)
 function selectedFilter(event,medias){
@@ -87,12 +87,12 @@ async function init() {
     // On attend un click sur les choix du filtre
     if (event.target.tagName === 'LI') {
       selectedFilter(event.target, photographer.medias);
-    };
+    }
     
     // On attend un click sur le bouton de la modale de contact (formulaire)
     if (event.target.className === 'contact_button') {
       displayModal();
-    };
+    }
 
     // On récupère les coordonnées du click
     const x = event.clientX;
@@ -121,7 +121,7 @@ async function init() {
         const heartIcons = liked.querySelector('.fa-solid.fa-heart');
         heartIcons.style.color = '#df00df';
       }
-    };
+    }
   });
 
   // Evenement des touches pour le menu déroulant (flèches pour la naviguation et entrée/espace pour valider)
@@ -199,14 +199,14 @@ async function init() {
 
   // On ferme le loader
   loader.style.display = 'none';
-};
+}
 
 
 const sortImagesSelect = document.getElementById('sort-images-select');
 const sortImagesButton = document.getElementById('sort-images-button');
 const dropdownOptions = sortImagesSelect.querySelectorAll('li');
 const sortDropdown = sortImagesSelect.parentElement
-const lightboxCaption = document.getElementById('lightbox-caption');
+// const lightboxCaption = document.getElementById('lightbox-caption');
 const photographerImage = document.getElementById('photographer-images');
 
 sortDropdown.addEventListener('mouseleave', event => {
