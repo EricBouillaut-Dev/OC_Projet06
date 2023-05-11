@@ -27,18 +27,16 @@
       <button class="contact_button" aria-label="Contact me">Contactez-moi</button>
     </div>
 
-
-
     <label for="sort-images-select" aria-label="Order by">Trier par</label>
     <div class="dropdown">
-      <button id="sort-images-button" role="button" aria-haspopup="listbox" aria-expanded="false"
+      <button id="sort-images-button" aria-haspopup="listbox" aria-expanded="false"
         aria-labelledby="sort-images-select">
         Popularité
       </button>
-      <ul id="sort-images-select" role="listbox" aria-activedescendant="" aria-labelledby="sort-images-select">
-        <li role="option" tabindex="0" data-value="likes" aria-selected="true">Popularité</li>
-        <li role="option" tabindex="0" data-value="date" aria-selected="false">Date</li>
-        <li role="option" tabindex="0" data-value="title" aria-selected="false">Titre</li>
+      <ul id="sort-images-select" role="listbox" aria-activedescendant="option1" aria-labelledby="sort-images-select">
+        <li id="option1" role="option" tabindex="0" data-value="likes" aria-selected="true">Popularité</li>
+        <li id="option2" role="option" tabindex="0" data-value="date" aria-selected="false">Date</li>
+        <li id="option3" role="option" tabindex="0" data-value="title" aria-selected="false">Titre</li>
       </ul>
     </div>
     <div id="photographer-images"></div>
@@ -48,42 +46,47 @@
     </div>
   </main>
 
-  <div class="lightbox">
-    <dialog class="border-lightbox">
+  <section class="lightbox">
+    <div class="border-lightbox" role="dialog" aria-modal="true">
       <span class="close" aria-label="Fermer la lightbox">&times;</span>
       <a class="prev" aria-label="Image précédente">&#10094;</a>
       <figure class="lightbox-img-container">
-        <img class="lightbox-img" alt="">
+        <img class="lightbox-img" alt="image" src="assets/images/logo.png">
         <figcaption class="lightbox-caption"></figcaption>
       </figure>
       <a class="next" aria-label="Image suivante">&#10095;</a>
-    </dialog>
-  </div>
+    </div>
+  </section>
 
-  <div id="contact_modal">
+  <section id="contact_modal" role="dialog" aria-modal="true">
     <div class="modal">
       <header>
         <h2>Contactez-moi</h2>
         <p></p>
-        <img src="assets/icons/close.svg" alt="Fermer le formulaire de contact" onclick="closeModal()">
+        <img src="assets/icons/close.svg" tabindex="0" onclick="closeModal()" alt="Close Contact form">
       </header>
       <form onsubmit="sendContact()">
-        <label for="prenom">Prénom :</label>
-        <input type="text" id="prenom" name="prenom" required minlength="2">
+        <label id="prenom_label" for="prenom">Prénom :</label>
+        <input type="text" id="prenom" name="prenom" required minlength="2" tabindex="0" aria-labelledby="prenom_label"
+          aria-label="First name">
 
-        <label for="nom">Nom :</label>
-        <input type="text" id="nom" name="nom" required minlength="2">
+        <label id="nom_label" for="nom">Nom :</label>
+        <input type="text" id="nom" name="nom" required minlength="2" aria-labelledby="nom_label"
+          aria-label="Last name">
 
-        <label for="email">Email :</label>
-        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+        <label id="email_label" for="email">Email :</label>
+        <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          aria-labelledby="email_label" aria-label="Email">
 
-        <label for="message">Votre message :</label>
-        <textarea id="message" name="message" rows="5" required minlength="10"></textarea>
+        <label id="message_label" for="message">Votre message :</label>
+        <textarea id="message" name="message" rows="5" required minlength="10" aria-labelledby="message_label"
+          aria-label="Your message"></textarea>
 
-        <button class="contact_button" aria-label="Bouton pour envoyer le formulaire de contact">Envoyer</button>
+        <button class="contact_button" type="submit" aria-label="Send">Envoyer</button>
       </form>
     </div>
-  </div>
+  </section>
+
   <script src="scripts/utils/api.js"></script>
   <script src="scripts/factories/photographer.js"></script>
   <script src="scripts/utils/lightbox.js"></script>

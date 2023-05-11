@@ -220,7 +220,7 @@ form input {
     border-top: 1px solid white;
   }
     
-  .dropdown ul li:hover, .dropdown ul li:focus {
+  .dropdown ul li:hover{
     background-color: #D3573C;
     border-radius: 2px;
   }
@@ -323,12 +323,17 @@ main label {
     transition: color 0.1s ease-in-out;
 
   }
-
+  #photographer-images figure i{
+    cursor: pointer;
+  }
   #photographer-images figure span{
     bottom: 0.65rem;
     right: 1.75rem;
     font-weight: bold;
   }
+  /* #photographer-images figure div{
+    display: flex;
+  } */
 
   figure{
     margin: 0;
@@ -369,6 +374,7 @@ main label {
   font-family: "fontawesome";
   padding-left: 0.5rem;
 }
+
 
 /*--------------------
   ------ Lightbox ------

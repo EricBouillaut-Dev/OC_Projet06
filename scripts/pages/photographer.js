@@ -118,11 +118,19 @@ async function init() {
       event.preventDefault();
       if (currentIndex > 0) {
         dropdownOptions[currentIndex - 1].focus();
+        dropdownOptions.forEach(function(option) {
+          option.setAttribute('aria-selected', 'false');
+        });
+        dropdownOptions[currentIndex - 1].setAttribute('aria-selected', 'true');
       }
     } else if (event.key === 'ArrowDown') {
       event.preventDefault();
       if (currentIndex < dropdownOptions.length - 1) {
         dropdownOptions[currentIndex + 1].focus();
+        dropdownOptions.forEach(function(option) {
+          option.setAttribute('aria-selected', 'false');
+        });
+        dropdownOptions[currentIndex + 1].setAttribute('aria-selected', 'true');
       }
     }
   });
@@ -139,6 +147,20 @@ async function init() {
       const x = window.innerWidth / 2;
       const y = window.innerHeight / 2;
       openLightbox (photographerMedias, x, y, mediaIndex);
+    }
+    if (event.target.tagName === 'SPAN' && (event.key === 'Enter' || event.key === ' ')){
+      event.preventDefault();
+      const liked = event.target.parentElement;
+      
+      if(!liked.classList.contains('liked')){
+        liked.classList.add('liked');
+        totalLikes ++;
+        countLikes.innerText = `${totalLikes}`;
+        const likeCount = liked.querySelector('span');
+        likeCount.textContent = parseInt(likeCount.textContent) + 1;
+        const heartIcons = liked.querySelector('.fa-solid.fa-heart');
+        heartIcons.style.color = '#df00df';
+      }
     }
   });
 

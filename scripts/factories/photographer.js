@@ -37,7 +37,7 @@ function mediaFactory(media) {
         `;
         }
         figure.innerHTML += `
-            <span tabindex="0">${likes}</span>           
+            <span tabindex="0" aria-label="likes">${likes}</span>           
             <i class="fa-solid fa-heart"></i>
         `
         return (figure);
