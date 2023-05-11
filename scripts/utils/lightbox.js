@@ -8,6 +8,7 @@ function openLightbox(medias, x, y, currentIndex){
 
     const lightboxImgContainer = lightboxImg.parentElement;
     
+    // On différencie les 'img' des 'video'
     if(medias[currentIndex].type == 'image'){
       lightboxImgContainer.innerHTML = `
         <img src="${url}" class="lightbox-img" alt="${title}" title="${title}">

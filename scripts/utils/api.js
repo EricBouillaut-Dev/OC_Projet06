@@ -1,3 +1,4 @@
+// Récupération des données avec fetch
 class Api {
     constructor(url) {
       this._url = url;
@@ -17,6 +18,7 @@ class Api {
     }
 }
 
+// Construction du photographe
 class Photographer {
   constructor(data) {
     this._name = data.name;
@@ -36,6 +38,7 @@ class Photographer {
   get medias() {return [];}
 }
 
+// Construction des medias
 class Media {
   constructor(data) {
     this._id = data.id;
@@ -77,7 +80,8 @@ class Media {
     return this._url;
   }
 }
-  
+
+// Récupération des données et construction des objets de chaque photographe
 async function getPhotographers(){
   const api = new Api('./data/photographers.json');
   const data = await api.get();
@@ -108,6 +112,8 @@ async function getPhotographers(){
       url: media.url
     };
   });
+
+  // Ajout d'un tableau contenant les medias pour chaque photographe
   medias.forEach(media => {
     const photographer = photographers.find(p => p.id === media.photographerId);
     const tmpName = photographer.name;

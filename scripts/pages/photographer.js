@@ -1,3 +1,4 @@
+// Affiche le header du photographe
 function headerPhotographer(photographer){
   const photographeName = document.querySelector('.photograph-name');
   const photographeLocation = document.querySelector('.photograph-location');
@@ -52,11 +53,9 @@ function selectedFilter(event,medias){
   sortImagesButton.removeAttribute ('class');
   sortImagesSelect.removeAttribute ('class');
 
-  // Affiche les images
+  // Affiche les images triées
   displayMedia(sortedMedia);
 }
-
-
 
 // Fonction d'initialisation
 async function init() {
@@ -127,11 +126,12 @@ async function init() {
   // Evenement des touches pour le menu déroulant (flèches pour la naviguation et entrée/espace pour valider)
   sortImagesSelect.addEventListener('keydown', function(event) {
 
+    // Gestion de la touche "entrée" de validation du bouton du filtre
     const currentIndex = Array.prototype.indexOf.call(dropdownOptions, event.target);
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
       selectedFilter(event.target, photographer.medias);
-    } else if (event.key === 'ArrowUp') {
+    } else if (event.key === 'ArrowUp') { // Touche flèche du haut pour naviguer dans le menu déroulant
       event.preventDefault();
       if (currentIndex > 0) {
         dropdownOptions[currentIndex - 1].focus();
@@ -140,7 +140,7 @@ async function init() {
         });
         dropdownOptions[currentIndex - 1].setAttribute('aria-selected', 'true');
       }
-    } else if (event.key === 'ArrowDown') {
+    } else if (event.key === 'ArrowDown') { // Touche flèche du bas pour naviguer dans le menu déroulant
       event.preventDefault();
       if (currentIndex < dropdownOptions.length - 1) {
         dropdownOptions[currentIndex + 1].focus();
@@ -155,6 +155,7 @@ async function init() {
   // Evenement de la validation de l'image au clavier (touche entrée/espace) pour lancer la lightbox
   photographerImage.addEventListener('keydown', function(event) {
 
+    // Evenement concernant uniquement les balises 'img' et 'video' avec la touche entrée/espace
     if ((event.target.tagName === 'IMG' || event.target.tagName === 'VIDEO') && (event.key === 'Enter' || event.key === ' ')) {
       event.preventDefault();
       const photographerMedias = photographer.medias;
@@ -165,6 +166,8 @@ async function init() {
       const y = window.innerHeight / 2;
       openLightbox (photographerMedias, x, y, mediaIndex);
     }
+
+    //Evenement pour incrémenter les likes avec la touche entrée/espace
     if (event.target.tagName === 'SPAN' && (event.key === 'Enter' || event.key === ' ')){
       event.preventDefault();
       const liked = event.target.parentElement;
@@ -201,14 +204,14 @@ async function init() {
   loader.style.display = 'none';
 }
 
-
+// Initialisation des constantes
 const sortImagesSelect = document.getElementById('sort-images-select');
 const sortImagesButton = document.getElementById('sort-images-button');
 const dropdownOptions = sortImagesSelect.querySelectorAll('li');
 const sortDropdown = sortImagesSelect.parentElement
-// const lightboxCaption = document.getElementById('lightbox-caption');
 const photographerImage = document.getElementById('photographer-images');
 
+// Evenement pour quiter le menu déroulant avec la souris
 sortDropdown.addEventListener('mouseleave', event => {
   sortImagesButton.setAttribute('aria-expanded', 'false');
   sortImagesButton.removeAttribute ('class');

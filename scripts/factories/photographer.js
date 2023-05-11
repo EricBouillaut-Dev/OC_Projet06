@@ -1,3 +1,4 @@
+// Factory pour générer les photographes de la page d'acceuil
 function photographerFactory(data) {
     const { name, portrait, location, tagline, price, id} = data;
 
@@ -17,6 +18,7 @@ function photographerFactory(data) {
     return { name, portrait, location, tagline, getUserCardDOM }
 }
 
+// Factory pour générer la galerie d'images du photographe
 function mediaFactory(media) {
     const { title, likes, price, date, type, url, id} = media;
 

@@ -1,3 +1,4 @@
+// Affiche les données des photographes
 function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
@@ -8,10 +9,12 @@ function displayData(photographers) {
     });
 }
 
+// Initialisation
 async function init() {
     const loader = document.querySelector('.loader');
     loader.style.display = 'flex';
     
+    //On attend la récupération des données
     const photographers = await getPhotographers();
     displayData(photographers);
     loader.style.display = 'none';
